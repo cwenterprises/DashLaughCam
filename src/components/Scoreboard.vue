@@ -58,7 +58,7 @@
 }
 
 .scoreboard_wrapper {
-	background: transparent url('@/assets/dln-ui-scoreboard-animated.webp') no-repeat scroll 0 0;
+	background: transparent url('@/assets/dln-ui-scoreboard-modified-nobg.png') no-repeat scroll 0 0;
 	color: #fff;
 	display: grid;
 	grid-column-start: 2;
