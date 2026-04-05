@@ -4,8 +4,8 @@
 		<div class="team_players" :class="'team_players--' + teamColor" v-if="players">
 			<player v-for="(item, index) in players" :key="index" :playerID="state.GetPlayers.indexOf(item)" />
 		</div>
-		<div class="team_logo" v-if="teamData.logoFound">
-			<img :src="teamLogo" width="94" height="94">
+		<div class="team_logo">
+			<img :src="teamData.logoFound ? teamLogo : fallbackLogo" width="94" height="94">
 		</div>
 	</div>
 </template>
@@ -77,6 +77,8 @@ import { iconModes, PlayerStateInfo, TeamInfo } from "@/interfaces/StoreInterfac
 import { useMatchStateStore } from "@/stores/MatchStateStore";
 import { useSettingStore } from "@/stores/SettingsStore";
 import { computed } from "vue";
+import redFallback from "@/assets/svg/DashCam_-_Scoreboard_-_Red.svg";
+import blueFallback from "@/assets/svg/DashCam_-_Scoreboard_-_Blue.svg";
 import Player from "./Player.vue";
 
 const state = useMatchStateStore();
@@ -124,6 +126,10 @@ const teamColor = computed(() => {
 const teamData = computed(() => {
 	if (props.team == Teams.red) return state.GetTeamData.red;
 	else return state.GetTeamData.blue;
+})
+
+const fallbackLogo = computed(() => {
+	return props.team == Teams.red ? redFallback : blueFallback;
 })
 
 const teamLogo = computed(() => {
